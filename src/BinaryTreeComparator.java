@@ -17,7 +17,42 @@ public class BinaryTreeComparator<E extends Comparable<E>> implements Comparator
      */
     @Override
     public int compare(BinaryTree<E> tree1, BinaryTree<E> tree2) {
-        // TODO: implement question 3 here
+        if (tree1 == null){
+            return -1;
+        }
+
+        compare(tree1.getLeft(),tree2.getLeft());
+        if (tree1.getValue().compareTo(tree2.getValue()) > 0){
+            return 1;
+        }
+        else if (tree1.getValue().compareTo(tree2.getValue()) < 0){
+            return -1;
+        }
+
+        if (comparison(tree1.getRight(),tree2.getRight()) != 0) {
+            return comparison(tree1.getRight(),tree2.getRight());
+        }
+
         return 0;
     }
+
+    private int comparison(BinaryTree<E> tree1, BinaryTree<E> tree2){
+        if (tree1 == null && tree2 != null){
+            return -1;
+        }
+        if (tree1 != null && tree2 == null){
+            return 1;
+        }
+        if (tree1 != null && tree2 != null) {
+            if (tree1.getValue().compareTo(tree2.getValue()) > 0) {
+                return 1;
+            }
+            else if (tree1.getValue().compareTo(tree2.getValue()) < 0) {
+                return -1;
+            }
+        }
+        return 0;
+    }
+
+
 }
