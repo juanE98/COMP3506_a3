@@ -35,17 +35,12 @@ public class BinaryTreeComparator<E extends Comparable<E>> implements Comparator
             //Recursively compare nodes starting from left most leaf.
             if (comparison(tree1,tree2) == 0) {
                 if (compare(tree1.getLeft(),tree2.getLeft()) == 0) {
-                    if (tree1.getRight() == null && tree2.getRight() != null) {
-                        return -1;
-                    }
-                    else if (tree1.getRight() != null && tree2.getRight() == null) {
-                        return 1;
+                    if (comparison(tree1.getRight(),tree2.getRight()) != 0) {
+                        return comparison(tree1.getRight(),tree2.getRight());
                     }
                     else {
                         if (compare(tree1.getRight(), tree2.getRight()) == 0) {
                             return 0;
-                        } else {
-                            return comparison(tree1.getRight(), tree2.getRight());
                         }
                     }
                 }
